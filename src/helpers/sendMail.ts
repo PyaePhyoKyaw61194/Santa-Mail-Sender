@@ -1,14 +1,13 @@
-import { createTransport, getTestMessageUrl } from 'nodemailer';
+import nodemailer from 'nodemailer';
 import { MailData, Status, WishArrayInfo } from '../types/wish';
 
-const transporter = createTransport({
-    host: process.env.MAIL_HOST,
-    port: process.env.MAIL_PORT,
+const transporter = nodemailer.createTransport({
+    host: 'smtp.ethereal.email',
+    port: 587,
     auth: {
-        user: process.env.ETHEREAL_EMAIL,
-        pass: process.env.ETHEREAL_PASS
-    },
-    // tls: { rejectUnauthorized: false }
+        user: 'eldridge39@ethereal.email',
+        pass: 'DHfF4vXyweVghzbKFA'
+    }
 });
 
 
@@ -40,7 +39,7 @@ const sendMail = (payload: MailData, wishArr: WishArrayInfo) => {
             return console.log(error);
         }
         console.log('Message sent: %s', info.messageId);
-        console.log('Preview URL: %s', getTestMessageUrl(info));
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
         currentWish.status = Status.success
         wishes[currentIndex] = currentWish
     });
