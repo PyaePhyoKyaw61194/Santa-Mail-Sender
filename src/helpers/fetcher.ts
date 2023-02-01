@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-async function fetcher(url) {
+const fetcher = async (url: string) => {
     const data = await (await fetch(url)).json()
     return data;
 }

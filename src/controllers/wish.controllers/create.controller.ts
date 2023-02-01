@@ -1,6 +1,6 @@
 import wishCreateModel from "../../models/wish/create.model";
 
-async function wishCreateContoller(req, res) {
+const wishCreateContoller = async (req, res) => {
     try {
         const wishes = req.app.locals.data.wishes
         const { body } = req;

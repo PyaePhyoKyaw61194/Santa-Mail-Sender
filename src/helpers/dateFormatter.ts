@@ -1,4 +1,4 @@
-function dateFormatter(date) {
+const dateFormatter = (date: string): string => {
     const dateArr = date.split('/')
     return dateArr[0] + "-" + dateArr[2] + "-" + dateArr[1]
 }

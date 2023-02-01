@@ -5,7 +5,7 @@ import responseHelper from "../../helpers/responseHelper"
 
 
 
-async function wishCreateModel(username, wish, wishes) {
+const wishCreateModel = async (username, wish, wishes) => {
     try {
 
         username = username.trim()

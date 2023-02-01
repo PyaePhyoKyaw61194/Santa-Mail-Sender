@@ -1,4 +1,6 @@
 import { createTransport, getTestMessageUrl } from 'nodemailer';
+import { MailData, Status, WishArrayInfo } from '../types/wish';
+
 const transporter = createTransport({
     host: process.env.MAIL_HOST,
     port: process.env.MAIL_PORT,
@@ -11,7 +13,7 @@ const transporter = createTransport({
 
 
 
-function sendMail(payload, wishes, index, wishObj) {
+const sendMail = (payload: MailData, wishArr: WishArrayInfo) => {
     let mailOptions = {
         from: '"Sender Name" do_not_reply@northpole.com',
         to: 'santa@northpole.com',
@@ -24,18 +26,20 @@ function sendMail(payload, wishes, index, wishObj) {
         /*   html: '<b>HTML body</b>' */
     };
 
-    wishObj.status = "pending"
-    wishes[index] = wishObj
+    const { wishes, currentIndex, currentWish } = wishArr
+
+    currentWish.status = Status.pending
+    wishes[currentIndex] = wishArr.currentWish
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            wishObj.status = "failed"
-            wishes[index] = wishObj
+            currentWish.status = Status.failed
+            wishes[currentIndex] = currentWish
             return console.log(error);
         }
         console.log('Message sent: %s', info.messageId);
         console.log('Preview URL: %s', getTestMessageUrl(info));
-        wishObj.status = "success"
-        wishes[index] = wishObj
+        currentWish.status = Status.success
+        wishes[currentIndex] = currentWish
     });
 
 }
