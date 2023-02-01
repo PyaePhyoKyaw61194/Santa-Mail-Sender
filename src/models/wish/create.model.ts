@@ -2,16 +2,17 @@ import calculateAge from "../../helpers/calculateAge"
 import dateFormatter from "../../helpers/dateFormatter"
 import fetcher from "../../helpers/fetcher"
 import responseHelper from "../../helpers/responseHelper"
+import { Profile, Status, User, Wish } from "../../types/wish"
 
 
 
-const wishCreateModel = async (username, wish, wishes) => {
+const wishCreateModel = async (username: string, wish: string, wishes: Wish[]) => {
     try {
 
         username = username.trim()
         wish = wish.trim()
-        const profiles = await fetcher("https://raw.githubusercontent.com/alj-devops/santa-data/master/userProfiles.json")
-        const users = await fetcher("https://raw.githubusercontent.com/alj-devops/santa-data/master/users.json")
+        const profiles = await fetcher("https://raw.githubusercontent.com/alj-devops/santa-data/master/userProfiles.json") as Profile[]
+        const users = await fetcher("https://raw.githubusercontent.com/alj-devops/santa-data/master/users.json") as User[]
 
 
         const userArr = users.filter(user => user.username === username)
@@ -41,7 +42,7 @@ const wishCreateModel = async (username, wish, wishes) => {
 
         // Store wish to in-memory array
         /*     storeWishes({ username, address, wish, status: "unfinished" }) */
-        wishes.push({ id: wishes.length, username, address, wish, status: "unfinished" })
+        wishes.push({ id: wishes.length, username, address, wish, status: Status.unfinished })
         // Success
         return responseHelper(
             true,

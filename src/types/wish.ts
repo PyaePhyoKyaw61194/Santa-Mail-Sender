@@ -1,3 +1,5 @@
+
+
 export interface Wish {
     id: number,
     username: string,
@@ -7,10 +9,10 @@ export interface Wish {
 }
 
 export enum Status {
-    unfinished = 1,
-    pending = 2,
-    failed = 3,
-    success = 4
+    unfinished = 'unfinished',
+    pending = 'pending',
+    failed = 'failed',
+    success = 'success'
 }
 
 export interface MailData {
@@ -25,6 +27,22 @@ export interface WishArrayInfo {
     currentWish: Wish
 }
 
-export interface ResponseData {
+export interface WishReqData {
+    username: string,
+    wish: string,
+}
+
+export interface WishResponseData {
     username: string
+}
+
+export interface Profile {
+    userUid: string,
+    address: string,
+    birthdate: string
+}
+
+export interface User {
+    username: string,
+    uid: string,
 }

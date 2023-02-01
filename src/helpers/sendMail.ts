@@ -8,12 +8,14 @@ const transporter = createTransport({
         user: process.env.ETHEREAL_EMAIL,
         pass: process.env.ETHEREAL_PASS
     },
-    tls: { rejectUnauthorized: false }
+    // tls: { rejectUnauthorized: false }
 });
 
 
 
+
 const sendMail = (payload: MailData, wishArr: WishArrayInfo) => {
+
     let mailOptions = {
         from: '"Sender Name" do_not_reply@northpole.com',
         to: 'santa@northpole.com',
@@ -30,6 +32,7 @@ const sendMail = (payload: MailData, wishArr: WishArrayInfo) => {
 
     currentWish.status = Status.pending
     wishes[currentIndex] = wishArr.currentWish
+
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             currentWish.status = Status.failed

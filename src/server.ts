@@ -22,7 +22,8 @@ app.get("/", (_request: Request, response: Response) => {
 app.post("/", wishCreateContoller)
 
 
-setInterval(() => { sendWishes(app.locals.data.wishes) }, Number(process.env.MAIL_SEND_INTERVAL) * 1000);
+setInterval(() => { sendWishes(app.locals.data.wishes) },
+    Number(process.env.MAIL_SEND_INTERVAL) * 1000);
 
 const PORT = process.env.PORT || 3000
 app.listen(process.env.PORT || 3000, () => {

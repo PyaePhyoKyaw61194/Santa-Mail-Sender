@@ -1,6 +1,6 @@
-import { ResponseData } from "../types/wish"
+import { WishResponseData } from "../types/wish"
 
-const responseHelper = (success: boolean, data?: ResponseData, errorMsg?: string) => {
+const responseHelper = (success: boolean, data?: WishResponseData, errorMsg?: string) => {
     return {
         success,
         data,
