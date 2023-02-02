@@ -4,9 +4,9 @@ const sendWishes = (wishes: Wish[]) => {
     if (wishes && wishes.length > 0) {
         wishes.forEach((wishObj, index) => {
             // mail sending
-            console.log(wishObj)
+            /*    console.log(wishObj) */
             if (wishObj.status === Status.unfinished || wishObj.status === Status.failed) {
-                console.log("Enter Send mail Process")
+                console.log("Sending Mail Id => "+ wishObj.id)
                 const { username, address, wish } = wishObj
                 sendMail(
                     { username, address, wish },
@@ -16,7 +16,7 @@ const sendWishes = (wishes: Wish[]) => {
             }
         });
     }
-    console.log("wish process " + new Date())
+    console.log("Wish Sending Process => " + new Date())
 }
 
 export default sendWishes

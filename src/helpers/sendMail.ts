@@ -2,11 +2,11 @@ import nodemailer from 'nodemailer';
 import { MailData, Status, WishArrayInfo } from '../types/wish';
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
+    host: process.env.MAIL_HOST,
+    port: process.env.MAIL_PORT,
     auth: {
-        user: 'eldridge39@ethereal.email',
-        pass: 'DHfF4vXyweVghzbKFA'
+        user: process.env.ETHEREAL_EMAIL,
+        pass: process.env.ETHEREAL_PASS
     }
 });
 

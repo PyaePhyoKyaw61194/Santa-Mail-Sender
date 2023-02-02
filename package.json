@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node lib/server.js",
-    "dev": "concurrently \"tsc -w\" \"nodemon lib/server.js\""
+    "start": "node -r dotenv/config lib/server.js",
+    "dev": "concurrently \"tsc -w\" \"nodemon -r dotenv/config lib/server.js\""
   },
   "keywords": [],
   "author": "",
