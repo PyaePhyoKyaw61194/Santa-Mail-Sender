@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import wishCreateModel from "../../models/wish/create.model";
+import wishCreateModel from "../../models/wish.models/create.model";
 import { Wish, WishReqData } from "../../types/wish";
 
 const wishCreateContoller = async (req: Request, res: Response) => {
