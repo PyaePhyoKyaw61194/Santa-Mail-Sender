@@ -18,7 +18,7 @@ const sendMail = (transporter: any, wishArrInfo: WishArrayInfo) => {
     if (!currentWish.wish || currentWish.wish.length === 0 ||
         !currentWish.username || currentWish.username.length === 0 ||
         !currentWish.address || currentWish.address.length === 0) {
-        console.log("Empty current wish info")
+
         return false
     }
     if (currentWish.status === Status.success ||

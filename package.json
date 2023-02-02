@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --no-cache ./*",
+    "test": "jest dotenv/config --no-cache ./*",
     "build": "tsc",
     "start": "node -r dotenv/config lib/server.js",
     "dev": "concurrently \"tsc -w\" \"nodemon -r dotenv/config lib/server.js\""
