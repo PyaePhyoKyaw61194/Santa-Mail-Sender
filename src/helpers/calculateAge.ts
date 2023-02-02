@@ -1,3 +1,5 @@
+import isValidDate from "./isAValidDate";
+
 // Age calculation (bithdate must be YYYY-MM-DD format)
 const calculateAge = (birthdate: string): number => {
 
@@ -5,6 +7,11 @@ const calculateAge = (birthdate: string): number => {
         /^\d{4}-\d{2}-\d{2}$/.test(birthdate) === false) {
         return -1
     }
+
+    if (!isValidDate(birthdate)) {
+        return -1
+    }
+
     const today = new Date();
     const birthDate = new Date(birthdate);
     let age = today.getFullYear() - birthDate.getFullYear();

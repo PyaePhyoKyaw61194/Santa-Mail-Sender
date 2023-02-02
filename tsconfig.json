@@ -13,6 +13,9 @@
       "esModuleInterop": true
   },
   "compileOnSave": true,
+  "exclude": [
+    "tests"
+  ],
   "include": [
       "src"
  ]
