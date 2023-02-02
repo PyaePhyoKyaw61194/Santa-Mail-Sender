@@ -7,7 +7,7 @@
       "outDir": "lib",
       "sourceMap": true,
       "strict": true,
-      "target": "ES2017",
+      "target": "ES6",
       "lib": ["ESNext"],
       "strictNullChecks": false,
       "esModuleInterop": true
@@ -15,5 +15,5 @@
   "compileOnSave": true,
   "include": [
       "src"
-  ]
+ ]
 }
