@@ -43,7 +43,7 @@ const wishCreateModel = async (username: string, wish: string, wishes: Wish[]) =
         const existingProfile = profileArr[0]
         const { birthdate, address } = existingProfile
         const age = calculateAge(dateFormatter(birthdate))
-        if (!age) {
+        if (age === -1) {
             return responseHelper(false, null, "Wrong birthdate format")
         }
         else if (age && age > 10) {
