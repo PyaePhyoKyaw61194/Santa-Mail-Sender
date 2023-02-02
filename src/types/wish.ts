@@ -13,11 +13,11 @@ export enum Status {
     success = 'success'
 }
 
-export interface MailData {
+/* export interface MailData {
     username: string,
     wish: string,
     address: string
-}
+} */
 
 export interface WishArrayInfo {
     wishes: Wish[],
