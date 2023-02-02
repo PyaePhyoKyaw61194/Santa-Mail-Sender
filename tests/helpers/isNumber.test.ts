@@ -1,4 +1,4 @@
-import isNumber from "../src/helpers/isNumber"
+import isNumber from "../../src/helpers/isNumber"
 describe("is a Number Test", () => {
     test("empty string", () => {
         expect(isNumber("")).toBe(false)

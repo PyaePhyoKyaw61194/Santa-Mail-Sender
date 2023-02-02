@@ -1,5 +1,5 @@
-import sendMail from "../src/helpers/sendMail"
-import { Status, WishArrayInfo } from "../src/types/wish"
+import sendMail from "../../src/helpers/sendMail"
+import { Status, WishArrayInfo } from "../../src/types/wish"
 import nodemailer from 'nodemailer';
 describe("Mail Sending Test", () => {
 

@@ -1,4 +1,4 @@
-import isAValidDate from "../src/helpers/isAValidDate"
+import isAValidDate from "../../src/helpers/isAValidDate"
 
 describe("validate JS Date Object", () => {
     test("empty string", () => {

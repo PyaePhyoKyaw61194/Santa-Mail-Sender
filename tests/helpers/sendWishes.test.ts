@@ -1,6 +1,6 @@
-import { Status } from "../src/types/wish";
+import { Status } from "../../src/types/wish";
 import nodemailer from 'nodemailer';
-import sendWishes from "../src/helpers/sendWishes"
+import sendWishes from "../../src/helpers/sendWishes"
 describe("Wish sending Test", () => {
 
     const mockTransporter = nodemailer.createTransport({

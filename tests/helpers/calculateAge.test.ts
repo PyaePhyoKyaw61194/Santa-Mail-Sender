@@ -1,4 +1,4 @@
-import calculateAge from '../src/helpers/calculateAge'
+import calculateAge from '../../src/helpers/calculateAge'
 
 describe('Age Calculator', () => {
     test('empty string', () => {

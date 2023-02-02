@@ -1,4 +1,4 @@
-import dateFormatter from '../src/helpers/dateFormatter'
+import dateFormatter from '../../src/helpers/dateFormatter'
 describe('date Formatter', () => {
     test('empty string', () => {
         expect(dateFormatter("")).toBe(null);
