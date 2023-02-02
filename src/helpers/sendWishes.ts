@@ -1,6 +1,6 @@
 import { Status, Wish } from '../types/wish';
 import sendMail from './sendMail';
-const sendWishes = (wishes: Wish[]) => {
+const sendWishes = (wishes: Wish[], transporter: any) => {
     console.log("Wish Sending Process => " + new Date())
 
     // Optimizing the process to start only when first wish is received
@@ -12,6 +12,7 @@ const sendWishes = (wishes: Wish[]) => {
 
                 const { username, address, wish } = wishObj
                 sendMail(
+                    transporter,
                     {
                         username,
                         address,

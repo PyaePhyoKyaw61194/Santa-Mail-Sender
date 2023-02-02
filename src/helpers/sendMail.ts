@@ -1,19 +1,7 @@
 import nodemailer from 'nodemailer';
 import { MailData, Status, WishArrayInfo } from '../types/wish';
-
-
-// nodemailer Config Initialization
-const transporter = nodemailer.createTransport({
-    host: process.env.MAIL_HOST,
-    port: process.env.MAIL_PORT,
-    auth: {
-        user: process.env.ETHEREAL_EMAIL,
-        pass: process.env.ETHEREAL_PASS
-    }
-});
-
 // Sending Mail with Nodemailer Config
-const sendMail = (payload: MailData, wishArr: WishArrayInfo) => {
+const sendMail = (transporter: any, payload: MailData, wishArr: WishArrayInfo) => {
 
     // Mail Config
     let mailOptions = {

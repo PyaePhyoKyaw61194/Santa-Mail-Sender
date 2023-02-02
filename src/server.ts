@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import nodemailer from 'nodemailer';
 import wishCreateContoller from "./controllers/wish.controllers/create.controller";
 import sendWishes from "./helpers/sendWishes";
 import { Wish } from "./types/wish";
@@ -18,6 +19,16 @@ app.locals.data = {
     wishes: [] as Wish[]
 };
 
+// nodemailer Config Initialization
+const transporter = nodemailer.createTransport({
+    host: process.env.MAIL_HOST,
+    port: process.env.MAIL_PORT,
+    auth: {
+        user: process.env.ETHEREAL_EMAIL,
+        pass: process.env.ETHEREAL_PASS
+    }
+});
+
 // Showing the main page
 app.get("/", (_request: Request, response: Response) => {
     return response.render('index');
@@ -28,7 +39,7 @@ app.post("/", wishCreateContoller)
 
 
 // Wish sening as mail process (15 sec interval)
-setInterval(() => { sendWishes(app.locals.data.wishes) },
+setInterval(() => { sendWishes(app.locals.data.wishes, transporter) },
     Number(process.env.MAIL_SEND_INTERVAL) * 1000);
 
 // App Start Point
