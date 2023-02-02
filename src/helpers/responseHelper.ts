@@ -1,6 +1,10 @@
 import { WishResponseData } from "../types/wish"
 
-const responseHelper = (success: boolean, data?: WishResponseData, errorMsg?: string) => {
+// Response Data Structure
+const responseHelper = (
+    success: boolean,
+    data?: WishResponseData,
+    errorMsg?: string) => {
     return {
         success,
         data,

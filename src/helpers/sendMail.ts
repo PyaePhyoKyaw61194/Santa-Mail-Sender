@@ -1,6 +1,8 @@
 import nodemailer from 'nodemailer';
 import { MailData, Status, WishArrayInfo } from '../types/wish';
 
+
+// nodemailer Config Initialization
 const transporter = nodemailer.createTransport({
     host: process.env.MAIL_HOST,
     port: process.env.MAIL_PORT,
@@ -10,11 +12,10 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-
-
-
+// Sending Mail with Nodemailer Config
 const sendMail = (payload: MailData, wishArr: WishArrayInfo) => {
 
+    // Mail Config
     let mailOptions = {
         from: '"Sender Name" do_not_reply@northpole.com',
         to: 'santa@northpole.com',
@@ -27,8 +28,11 @@ const sendMail = (payload: MailData, wishArr: WishArrayInfo) => {
         /*   html: '<b>HTML body</b>' */
     };
 
+    // Destructuring in-memory wish array to update status
     const { wishes, currentIndex, currentWish } = wishArr
+    console.log("Sending Mail Id => " + currentWish.id)
 
+    // Initializing as pending process 
     currentWish.status = Status.pending
     wishes[currentIndex] = wishArr.currentWish
 
@@ -40,6 +44,8 @@ const sendMail = (payload: MailData, wishArr: WishArrayInfo) => {
         }
         console.log('Message sent: %s', info.messageId);
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+        // After mail sending Success for a wish, update the status
         currentWish.status = Status.success
         wishes[currentIndex] = currentWish
     });

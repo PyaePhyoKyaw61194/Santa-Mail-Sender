@@ -1,3 +1,4 @@
+// Age calculation (bithdate must be YYYY-MM-DD format)
 const calculateAge = (birthdate: string): number => {
     const today = new Date();
     const birthDate = new Date(birthdate);

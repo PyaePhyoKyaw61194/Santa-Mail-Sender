@@ -1,3 +1,4 @@
+// Changing Date Format from YYYY/DD/MM to YYYY-MM-DD
 const dateFormatter = (date: string): string => {
     const dateArr = date.split('/')
     return dateArr[0] + "-" + dateArr[2] + "-" + dateArr[1]

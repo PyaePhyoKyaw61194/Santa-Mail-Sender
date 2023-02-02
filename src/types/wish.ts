@@ -1,5 +1,3 @@
-
-
 export interface Wish {
     id: number,
     username: string,
