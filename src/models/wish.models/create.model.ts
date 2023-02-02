@@ -11,6 +11,15 @@ const wishCreateModel = async (username: string, wish: string, wishes: Wish[]) =
         username = username.trim()
         wish = wish.trim()
 
+        if (username.length === 0) {
+            return responseHelper(false, null, "Username should be filled")
+        }
+        else if (wish.length === 0) {
+            return responseHelper(false, null, "Wish should be filled")
+        }
+        else if (wish.length >= 100) {
+            return responseHelper(false, null, "Wish should be less than 100 words")
+        }
         // Fetching External Data
         const profiles = await fetcher("https://raw.githubusercontent.com/alj-devops/santa-data/master/userProfiles.json") as Profile[]
         const users = await fetcher("https://raw.githubusercontent.com/alj-devops/santa-data/master/users.json") as User[]
