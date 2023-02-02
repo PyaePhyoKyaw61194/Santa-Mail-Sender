@@ -1,7 +1,7 @@
 # Santa Mail Sender App
 
 ## Description
-Web app for sending wish to Santa. It will send your wish to Santa's mailbox. For detail about the challenge, please read README_CHALLEGE.md .
+Web app for sending wish to Santa. It will send your wish to Santa's mailbox. For detail about the challenge, please read README_CHALLENGE.md .
 
 ## Tech Stack
 - express
