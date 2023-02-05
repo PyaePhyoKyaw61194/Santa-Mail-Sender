@@ -14,7 +14,7 @@ const wishObject = {
         invalid_type_error: "Name must be a string(zod)",
     }).
         min(1, { message: "Name is required(zod)" }),
-    wish: z.string({
+    content: z.string({
         required_error: "Wish is required(zod)",
         invalid_type_error: "Wish must be a string(zod)",
 
@@ -29,12 +29,13 @@ const wishObject = {
         .min(1, { message: "Wish is required(zod)" })
         .max(100, { message: "Wish should be less than 100 words(zod)" }),
     status: z.nativeEnum(Status),
+    message: z.string().optional()
 
 }
 
 const wishCreateSchema = z.object({
     ...wishObject
-}).omit({ id: true, status: true, address: true })
+}).pick({ username: true, content: true })
 type TWishCreate = z.infer<typeof wishCreateSchema>
 
 const wishResponseSchema = z.object({
@@ -49,7 +50,7 @@ type TWish = z.infer<typeof wishSchema>
 
 const wishArrayInfoSchema = z.object({
     wishes: z.array(wishSchema),
-    currentIndex: z.number(),
+    currentIndex: z.number().min(1),
     currentWish: wishSchema
 })
 type TWishArrayInfo = z.infer<typeof wishArrayInfoSchema>
@@ -68,7 +69,4 @@ const userSchema = z.object({
 type TUser = z.infer<typeof userSchema>
 
 
-
-
-
-export { wishCreateSchema, TWishCreate, TWishResponse, TWish, TWishArrayInfo, TProfile, TUser }
+export { wishCreateSchema, wishSchema, wishArrayInfoSchema, userSchema, profileSchema, TWishCreate, TWishResponse, TWish, TWishArrayInfo, TProfile, TUser }

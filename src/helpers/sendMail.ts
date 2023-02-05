@@ -15,7 +15,7 @@ const sendMail = (transporter: any, wishArrInfo: TWishArrayInfo) => {
         return false
     }
 
-    if (!currentWish.wish || currentWish.wish.length === 0 ||
+    if (!currentWish.content || currentWish.content.length === 0 ||
         !currentWish.username || currentWish.username.length === 0 ||
         !currentWish.address || currentWish.address.length === 0) {
 
@@ -35,7 +35,7 @@ const sendMail = (transporter: any, wishArrInfo: TWishArrayInfo) => {
         subject: 'Wishes From Child < ' + currentWish.username + " >",
         text: `Dear santa,
          ${currentWish.username}'s wish is
-         [ ${currentWish.wish} ] 
+         [ ${currentWish.content} ] 
         The child's address is ${currentWish.address}.
         Please fufill the wish.`,
         /*   html: '<b>HTML body</b>' */
@@ -47,7 +47,9 @@ const sendMail = (transporter: any, wishArrInfo: TWishArrayInfo) => {
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             currentWish.status = Status.failed
+            currentWish.message = error;
             wishes[currentIndex] = currentWish
+
             console.log(error)
             return false;
         }
@@ -56,6 +58,7 @@ const sendMail = (transporter: any, wishArrInfo: TWishArrayInfo) => {
 
         // After mail sending Success for a wish, update the status
         currentWish.status = Status.success
+
         wishes[currentIndex] = currentWish
         return true
     });

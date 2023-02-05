@@ -11,9 +11,9 @@ const wishCreateContoller = async (req: Request, res: Response) => {
 
 
         const { body } = req;
-        const { username, wish } = body as TWishCreate
+        const { username, content } = body as TWishCreate
 
-        const { success, data, error } = await wishCreateModel({ username, wish }, wishes);
+        const { success, data, error } = await wishCreateModel({ username, content }, wishes);
 
         // If error happens, show error page
         if (!success) {

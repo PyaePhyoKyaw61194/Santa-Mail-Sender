@@ -7,13 +7,12 @@ const sendWishes = (wishes: TWish[], transporter: any) => {
         attempt: 0
     }
 
+    // Optimizing the process to start only when first wish is received
     if (!transporter || !wishes || wishes.length === 0) {
         console.log('Wish Sending Process =>')
         console.log(report)
         return report
     }
-
-    // Optimizing the process to start only when first wish is received
 
     wishes.forEach((wishObj, index) => {
         // Optimizing the mail sending attempt with status       

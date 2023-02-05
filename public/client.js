@@ -7,17 +7,17 @@ santaForm.onsubmit = function (event) {
 
   const formData = new FormData(event.target);
   const username = formData.get('username')
-  const wish = formData.get('wish')
+  const content = formData.get('content')
 
   if (username == null || username.trim().length === 0) {
     event.preventDefault();
     message.innerHTML = "Please fill user name";
   }
-  else if (wish == null || wish.trim().length === 0) {
+  else if (content == null || content.trim().length === 0) {
     event.preventDefault();
     message.innerHTML = "Please fill wish";
   }
-  else if (wish.trim().length >= 100) {
+  else if (content.trim().length >= 100) {
     event.preventDefault();
     message.innerHTML = "Wish should not be more than 100 words";
   }
