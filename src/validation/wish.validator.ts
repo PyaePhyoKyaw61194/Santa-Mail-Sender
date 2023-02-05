@@ -11,23 +11,23 @@ const wishObject = {
     id: z.number(),
     username: z.string({
         required_error: "Name is required(zod)",
-        invalid_type_error: "Name must be a string",
+        invalid_type_error: "Name must be a string(zod)",
     }).
         min(1, { message: "Name is required(zod)" }),
     wish: z.string({
         required_error: "Wish is required(zod)",
-        invalid_type_error: "Wish must be a string",
+        invalid_type_error: "Wish must be a string(zod)",
 
     })
         .min(1, { message: "Wish is required(zod)" })
-        .max(100, { message: "Wish should be less than 100 words" }),
+        .max(100, { message: "Wish should be less than 100 words(zod)" }),
     address: z.string({
         required_error: "Wish is required(zod)",
-        invalid_type_error: "Wish must be a string",
+        invalid_type_error: "Wish must be a string(zod)",
 
     })
         .min(1, { message: "Wish is required(zod)" })
-        .max(100, { message: "Wish should be less than 100 words" }),
+        .max(100, { message: "Wish should be less than 100 words(zod)" }),
     status: z.nativeEnum(Status),
 
 }
