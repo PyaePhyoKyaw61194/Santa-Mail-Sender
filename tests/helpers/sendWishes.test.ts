@@ -46,7 +46,6 @@ describe("Wish sending Test", () => {
     })
 
     xtest("Valid Mail Test (1 Unfinshed)", () => {
-        console.log(process.env.ETHEREAL_EMAIL)
         expect(sendWishes([
             {
                 ...mockWishes[0]

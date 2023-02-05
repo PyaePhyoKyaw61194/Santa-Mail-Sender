@@ -1,5 +1,7 @@
 import nodemailer from 'nodemailer';
-import { Status, TWishArrayInfo } from '../validation/wish.validator';
+import { Status, TWishArrayInfo, wishArrayInfoSchema } from '../validation/wish.validator';
+import zodErrorFormatter from './zodErrorFormatter';
+
 // Sending Mail with Nodemailer Config
 const sendMail = (transporter: any, wishArrInfo: TWishArrayInfo) => {
     // Destructuring in-memory wish array to update status
@@ -7,20 +9,14 @@ const sendMail = (transporter: any, wishArrInfo: TWishArrayInfo) => {
     if (transporter === null) {
         return false
     }
-    if (wishes === null ||
-        wishes.length === 0 ||
-        currentIndex === null ||
-        currentIndex < 0 ||
-        currentWish === null) {
-        return false
+
+    const validation = wishArrayInfoSchema.safeParse(wishArrInfo)
+    if (validation.success === false) {
+        const errRes = zodErrorFormatter(validation.error)
+        console.log(errRes)
+        return false;
     }
 
-    if (!currentWish.content || currentWish.content.length === 0 ||
-        !currentWish.username || currentWish.username.length === 0 ||
-        !currentWish.address || currentWish.address.length === 0) {
-
-        return false
-    }
     if (currentWish.info.status === Status.success ||
         currentWish.info.status === Status.pending) {
         return false

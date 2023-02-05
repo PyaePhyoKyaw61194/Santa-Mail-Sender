@@ -13,6 +13,8 @@ describe("Mail Sending Test", () => {
         }
     });
 
+
+
     const mockWishArrayInfo: TWishArrayInfo = {
         currentIndex: 0,
         currentWish: {
@@ -100,7 +102,7 @@ describe("Mail Sending Test", () => {
         expect(sendMail(mockTransporter,
             {
                 ...mockWishArrayInfo,
-                currentIndex: -1,
+                wishes: []
             })).toBe(false)
     })
 
@@ -108,7 +110,7 @@ describe("Mail Sending Test", () => {
         expect(sendMail(mockTransporter,
             {
                 ...mockWishArrayInfo,
-                wishes: []
+                currentIndex: -1,
             })).toBe(false)
     })
 })

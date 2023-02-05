@@ -8,7 +8,7 @@ export enum Status {
 }
 
 const wishObject = {
-    id: z.number(),
+    id: z.number().min(0),
     username: z.string({
         required_error: "Name is required(zod)",
         invalid_type_error: "Name must be a string(zod)",
@@ -51,8 +51,8 @@ const wishSchema = z.object({
 type TWish = z.infer<typeof wishSchema>
 
 const wishArrayInfoSchema = z.object({
-    wishes: z.array(wishSchema),
-    currentIndex: z.number().min(1),
+    wishes: z.array(wishSchema).min(1),
+    currentIndex: z.number().min(0),
     currentWish: wishSchema
 })
 type TWishArrayInfo = z.infer<typeof wishArrayInfoSchema>
