@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
-import { Status, WishArrayInfo } from '../types/wish';
+import { Status, TWishArrayInfo } from '../validation/wish.validator';
 // Sending Mail with Nodemailer Config
-const sendMail = (transporter: any, wishArrInfo: WishArrayInfo) => {
+const sendMail = (transporter: any, wishArrInfo: TWishArrayInfo) => {
     // Destructuring in-memory wish array to update status
     const { wishes, currentIndex, currentWish } = wishArrInfo
     if (transporter === null) {

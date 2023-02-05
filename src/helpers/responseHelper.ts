@@ -1,9 +1,10 @@
-import { WishResponseData } from "../types/wish"
+import { TWishResponse } from "../validation/wish.validator"
+
 
 // Response Data Structure
 const responseHelper = (
     success: boolean,
-    data?: WishResponseData,
+    data?: TWishResponse,
     errorMsg?: string) => {
     return {
         success,

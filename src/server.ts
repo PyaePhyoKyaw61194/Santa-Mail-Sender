@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import nodemailer from 'nodemailer';
 import wishCreateContoller from "./controllers/wish.controllers/create.controller";
 import sendWishes from "./helpers/sendWishes";
-import { Wish } from "./types/wish";
+import { TWish } from "./validation/wish.validator";
 require('dotenv').config();
 
 const app = express();
@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 
 // Storing wishes as in-memory data within app life-cycle
 app.locals.data = {
-    wishes: [] as Wish[]
+    wishes: [] as TWish[]
 };
 
 // nodemailer Config Initialization

@@ -2,27 +2,26 @@ import calculateAge from "../../helpers/calculateAge"
 import dateFormatter from "../../helpers/dateFormatter"
 import fetcher from "../../helpers/fetcher"
 import responseHelper from "../../helpers/responseHelper"
-import { Profile, Status, User, Wish } from "../../types/wish"
+import zodErrorFormatter from "../../helpers/zodErrorFormatter"
+import { Status, TProfile, TUser, TWish, TWishCreate, wishCreateSchema } from "../../validation/wish.validator"
 
-const wishCreateModel = async (username: string, wish: string, wishes: Wish[]) => {
+
+const wishCreateModel = async (payload: TWishCreate, wishes: TWish[]) => {
     try {
 
-        // Sanitizing Data
-        username = username.trim()
-        wish = wish.trim()
+        const { username, wish } = payload
 
-        if (username.length === 0) {
-            return responseHelper(false, null, "Username should be filled")
+        const validation = await wishCreateSchema
+            .safeParseAsync(payload)
+
+        if (validation.success == false) {
+            const errRes = zodErrorFormatter(validation.error)
+            return responseHelper(false, null, errRes)
         }
-        else if (wish.length === 0) {
-            return responseHelper(false, null, "Wish should be filled")
-        }
-        else if (wish.length >= 100) {
-            return responseHelper(false, null, "Wish should be less than 100 words")
-        }
+
         // Fetching External Data
-        const profiles = await fetcher("https://raw.githubusercontent.com/alj-devops/santa-data/master/userProfiles.json") as Profile[]
-        const users = await fetcher("https://raw.githubusercontent.com/alj-devops/santa-data/master/users.json") as User[]
+        const profiles = await fetcher("https://raw.githubusercontent.com/alj-devops/santa-data/master/userProfiles.json") as TProfile[]
+        const users = await fetcher("https://raw.githubusercontent.com/alj-devops/santa-data/master/users.json") as TUser[]
 
         // Register Check
         const userArr = users.filter(user => user.username === username)

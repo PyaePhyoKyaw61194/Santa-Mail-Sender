@@ -1,6 +1,6 @@
-import { Status, Wish } from '../types/wish';
+import { Status, TWish } from '../validation/wish.validator';
 import sendMail from './sendMail';
-const sendWishes = (wishes: Wish[], transporter: any) => {
+const sendWishes = (wishes: TWish[], transporter: any) => {
     const currentDateTime = new Date();
     let report = {
         time: currentDateTime,

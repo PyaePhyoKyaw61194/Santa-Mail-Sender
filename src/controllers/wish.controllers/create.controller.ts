@@ -1,17 +1,19 @@
 import { Request, Response } from "express";
 import wishCreateModel from "../../models/wish.models/create.model";
-import { Wish, WishReqData } from "../../types/wish";
+import { TWish, TWishCreate } from "../../validation/wish.validator";
+
 
 const wishCreateContoller = async (req: Request, res: Response) => {
     try {
 
         // Getting in-memory global wish array
-        const wishes = req.app.locals.data.wishes as Wish[]
+        const wishes = req.app.locals.data.wishes as TWish[]
 
 
         const { body } = req;
-        const { username, wish } = body as WishReqData
-        const { success, data, error } = await wishCreateModel(username, wish, wishes);
+        const { username, wish } = body as TWishCreate
+
+        const { success, data, error } = await wishCreateModel({ username, wish }, wishes);
 
         // If error happens, show error page
         if (!success) {

@@ -1,6 +1,7 @@
 import sendMail from "../../src/helpers/sendMail"
-import { Status, WishArrayInfo } from "../../src/types/wish"
+
 import nodemailer from 'nodemailer';
+import { Status, TWishArrayInfo } from "../../src/validation/wish.validator";
 describe("Mail Sending Test", () => {
 
     const mockTransporter = nodemailer.createTransport({
@@ -12,7 +13,7 @@ describe("Mail Sending Test", () => {
         }
     });
 
-    const mockWishArrayInfo: WishArrayInfo = {
+    const mockWishArrayInfo: TWishArrayInfo = {
         currentIndex: 0,
         currentWish: {
             id: 1,
