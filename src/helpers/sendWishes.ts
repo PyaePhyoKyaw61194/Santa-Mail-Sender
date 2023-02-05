@@ -15,9 +15,10 @@ const sendWishes = (wishes: TWish[], transporter: any) => {
     }
 
     wishes.forEach((wishObj, index) => {
-        // Optimizing the mail sending attempt with status       
-        if (wishObj.status === Status.unfinished ||
-            wishObj.status === Status.failed) {
+        // Optimizing the mail sending attempt with status    
+        console.log(wishObj)
+        if (wishObj.info.status === Status.unfinished ||
+            wishObj.info.status === Status.failed) {
             sendMail(
                 transporter,
                 {

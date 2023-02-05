@@ -17,25 +17,32 @@ describe("Mail Sending Test", () => {
         currentIndex: 0,
         currentWish: {
             id: 1,
-            status: Status.unfinished,
+
             username: "mock-user-1",
             content: "mock-wish-1",
-            address: "mock-address-1"
+            address: "mock-address-1",
+            info: {
+                status: Status.unfinished,
+            }
         },
         wishes: [
             {
                 id: 1,
-                status: Status.unfinished,
                 username: "mock-user-1",
                 content: "mock-wish-1",
-                address: "mock-address-1"
+                address: "mock-address-1",
+                info: {
+                    status: Status.unfinished,
+                }
             },
             {
                 id: 2,
-                status: Status.unfinished,
                 username: "mock-user-2",
                 content: "mock-wish-2",
-                address: "mock-address-2"
+                address: "mock-address-2",
+                info: {
+                    status: Status.unfinished,
+                }
             },
         ]
     }
@@ -75,7 +82,7 @@ describe("Mail Sending Test", () => {
         expect(sendMail(mockTransporter, {
             ...mockWishArrayInfo,
             currentWish: {
-                ...mockWishArrayInfo.currentWish, status: Status.success,
+                ...mockWishArrayInfo.currentWish, info: { status: Status.success },
             }
         })).toBe(false)
     })
@@ -84,7 +91,7 @@ describe("Mail Sending Test", () => {
         expect(sendMail(mockTransporter, {
             ...mockWishArrayInfo,
             currentWish: {
-                ...mockWishArrayInfo.currentWish, status: Status.pending,
+                ...mockWishArrayInfo.currentWish, info: { status: Status.pending },
             }
         })).toBe(false)
     })

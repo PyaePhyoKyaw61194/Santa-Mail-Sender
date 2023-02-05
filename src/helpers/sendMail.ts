@@ -21,8 +21,8 @@ const sendMail = (transporter: any, wishArrInfo: TWishArrayInfo) => {
 
         return false
     }
-    if (currentWish.status === Status.success ||
-        currentWish.status === Status.pending) {
+    if (currentWish.info.status === Status.success ||
+        currentWish.info.status === Status.pending) {
         return false
     }
 
@@ -41,13 +41,13 @@ const sendMail = (transporter: any, wishArrInfo: TWishArrayInfo) => {
         /*   html: '<b>HTML body</b>' */
     };
     // Initializing as pending process 
-    currentWish.status = Status.pending
+    currentWish.info.status = Status.pending
     wishes[currentIndex] = wishArrInfo.currentWish
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            currentWish.status = Status.failed
-            currentWish.message = error;
+            currentWish.info.status = Status.failed
+
             wishes[currentIndex] = currentWish
 
             console.log(error)
@@ -57,8 +57,7 @@ const sendMail = (transporter: any, wishArrInfo: TWishArrayInfo) => {
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
         // After mail sending Success for a wish, update the status
-        currentWish.status = Status.success
-
+        currentWish.info.status = Status.success
         wishes[currentIndex] = currentWish
         return true
     });

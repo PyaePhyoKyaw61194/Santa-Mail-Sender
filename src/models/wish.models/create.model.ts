@@ -17,6 +17,7 @@ const wishCreateModel = async (payload: TWishCreate, wishes: TWish[]) => {
             return responseHelper(false, null, errRes)
         }
 
+
         const { username, content } = wishCreateValidation.data
 
         // Fetching External Data
@@ -45,13 +46,14 @@ const wishCreateModel = async (payload: TWishCreate, wishes: TWish[]) => {
             return responseHelper(false, null, "Profile not found")
         }
 
-        // Profile Data Validatiom Check
+        // Profile Data Validation Check
         const existingProfile = profileArr[0]
         const profileValidation = await profileSchema.safeParseAsync(existingProfile)
         if (profileValidation.success === false) {
             const errRes = zodErrorFormatter(profileValidation.error)
             return responseHelper(false, null, errRes)
         }
+
 
         // Age Check
         const { birthdate, address } = profileValidation.data
@@ -64,9 +66,10 @@ const wishCreateModel = async (payload: TWishCreate, wishes: TWish[]) => {
         }
 
         // Wish Data Validation Check
-        const wishValidation = await wishSchema.safeParseAsync({ id: wishes.length, username, address, content, status: Status.unfinished })
+        const wishValidation = await wishSchema.safeParseAsync({ id: wishes.length, username, address, content, info: { status: Status.unfinished } })
         if (wishValidation.success === false) {
             const errRes = zodErrorFormatter(wishValidation.error)
+            console.log(errRes)
             return responseHelper(false, null, errRes)
         }
         // Store wishes to in-memory array

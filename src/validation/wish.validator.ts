@@ -28,8 +28,10 @@ const wishObject = {
     })
         .min(1, { message: "Wish is required(zod)" })
         .max(100, { message: "Wish should be less than 100 words(zod)" }),
-    status: z.nativeEnum(Status),
-    message: z.string().optional()
+
+    info: z.object({
+        status: z.nativeEnum(Status),
+    })
 
 }
 
