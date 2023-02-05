@@ -8,6 +8,7 @@ Web app for sending wish to Santa. It will send your wish to Santa's mailbox. Fo
 - typescript
 - ejs
 - jest
+- zod
 - nodemailer
 - MVC pattern
 - Unit Tests
